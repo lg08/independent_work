@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 from skimage import io, transform
 import torch
+import cv2
 
 import PIL
 
@@ -43,6 +44,29 @@ class CustomImageDataset(Dataset):
             sample = self.transform(sample)
 
         return sample
+
+class Segmentation_Dataset(Dataset):
+    def __init__(self, images, masks, transforms):
+        self.images = images
+        self.masks = masks
+        self.transforms = transforms
+
+    def __len__(self):
+        return len(self.images)
+
+    def __getitem__(self, idx):
+        imagePath = self.images[idx]
+        image = cv2.imread(imagePath)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+        mask = cv2.imread(self.masks[idx], 0)
+
+        if self.transforms is not None:
+            image = self.transforms(image)
+            mask = self.transforms(mask)
+
+        return (image, mask)
+
 
 class ToTensor(object):
     """Convert ndarrays in sample to Tensors."""

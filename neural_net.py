@@ -126,12 +126,12 @@ class PV_Net():
 
     def save_net(self, path='./extras/solar_panel_nueral_net.pth'):
         print("Saving Neural Net...")
-        if self.net:
+        try:
             torch.save(self.net.state_dict(), path)
-        else:
+            print("Neural Net Saved!")
+        except:
             print("Currently no neural network configured, please train one\
                   first!")
-        print("Neural Net Saved!")
 
     def load_net(self, path='./extras/solar_panel_nueral_net.pth'):
         print("Loading Neural Net...")
@@ -164,3 +164,20 @@ class PV_Net():
             plt.axis('off')
             plt.title(f"pic {i}: {self.classes[predicted[i]]}")
         plt.show()
+
+    def test_whole(self):
+        correct = 0
+        total = 0
+        # since we're not training, we don't need to calculate the gradients for our outputs
+        with torch.no_grad():
+            for data in self.testloader:
+                images, labels = data
+                # calculate outputs by running images through the network
+                outputs = self.net(images.float())
+                # the class with the highest energy is what we choose as prediction
+                _, predicted = torch.max(outputs.data, 1)
+                total += labels.size(0)
+                correct += (predicted == labels).sum().item()
+
+        print('Accuracy of the network on the test images: %d %%' % (
+            100 * correct / total))
