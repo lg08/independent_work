@@ -161,4 +161,5 @@ plt.legend(loc="lower left")
 plt.savefig(config.PLOT_PATH)
 
 # serialize the model to disk
-torch.save(unet, config.MODEL_PATH)
+# torch.save(unet, config.MODEL_PATH)
+torch.save(unet.state_dict(), config.MODEL_PATH)
