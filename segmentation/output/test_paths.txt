@@ -1,0 +1,14 @@
+/home/lg08/main/data/solar_panel_images/images/PV01_325496_1203757.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325565_1204537.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325122_1203763.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325154_1203812.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325371_1203808.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325397_1203797.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325373_1203808.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325586_1204548.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325573_1204537.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325415_1203778.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325472_1204667.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325327_1203764.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325424_1204680.bmp
+/home/lg08/main/data/solar_panel_images/images/PV01_325399_1203751.bmp
