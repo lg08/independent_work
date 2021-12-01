@@ -43,26 +43,18 @@ def make_predictions(model, imagePath, count):
         # image = cv2.resize(image, (128, 128))
         image = cv2.resize(image, (256, 256))
         orig = image.copy()
-        print("-----------------------------")
-        print(orig)
-        print(orig.dtype)
-        print("-----------------------------")
 
         # find the filename and generate the path to ground truth
         # mask
         filename = imagePath.split(os.path.sep)[-1]
         filename = filename.split(".")
         filename = filename[0] + "_label." + filename[1]
-        print("filename")
-        print(filename)
         groundTruthPath = os.path.join(config.SEG_MASK_PATH,
             filename)
 
         # load the ground-truth segmentation mask in grayscale mode
         # and resize it
         gtMask = cv2.imread(groundTruthPath, 0)
-        print("gt mask type")
-        print(gtMask.dtype)
         gtMask = cv2.resize(gtMask, (config.INPUT_IMAGE_HEIGHT, config.INPUT_IMAGE_HEIGHT))
 
         # make the channel axis to be the leading one, add a batch
@@ -81,8 +73,6 @@ def make_predictions(model, imagePath, count):
         # filter out the weak predictions and convert them to integers
         predMask = (predMask > config.THRESHOLD) * 255
         predMask = predMask.astype(np.uint8)
-        print("pred mask type")
-        print(predMask.dtype)
 
         # prepare a plot for visualization
         prepare_plot(orig, gtMask, predMask, count)
@@ -101,13 +91,11 @@ unet = UNet().to(config.DEVICE)
 unet.load_state_dict(torch.load(config.MODEL_PATH))
 unet.eval()
 # unet = torch.load(config.MODEL_PATH).to(config.DEVICE)
-print("got here")
 
 # iterate over the randomly selected test image paths
 count = 0
-print(count)
 for path in imagePaths:
-    print(count)
+    print(f"Predicting on image: {path}...")
     # make predictions and visualize the results
     make_predictions(unet, path, count)
     count = count + 1

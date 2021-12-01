@@ -87,8 +87,6 @@ H = {"train_loss": [], "test_loss":[]}
 
 
 
-for (i, (x,y)) in enumerate(trainLoader):
-    print(i)
 print("[INFO] training the network...")
 startTime = time.time()
 for e in tqdm(range(config.NUM_EPOCHS)):
