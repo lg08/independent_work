@@ -12,6 +12,7 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 import time
 import os
+from datetime import datetime
 
 # large chunks taken from here:
 #https://www.pyimagesearch.com/2021/11/08/u-net-training-image-segmentation-models-in-pytorch/
@@ -161,3 +162,13 @@ plt.savefig(config.PLOT_PATH)
 # serialize the model to disk
 # torch.save(unet, config.MODEL_PATH)
 torch.save(unet.state_dict(), config.MODEL_PATH)
+
+# now, save the model information to a file
+current_time = datetime.now().strftime('%Y-%m-%d__%H-%M')
+text_file = open(os.path.join(config.BASE_OUTPUT, f"model_info_{current_time}.txt"), "w")
+n = text_file.write(f"batch_size: {config.BATCH_SIZE}\n"+ 
+                    f"epochs: {config.NUM_EPOCHS}\n" + 
+                    f"image_size: {config.INPUT_IMAGE_HEIGHT} x {config.INPUT_IMAGE_WIDTH}" +
+                    f"running_time: {endTime - startTime}\n" +
+                    f"train_loss: {avgTrainLoss}, test_loss: {avgTestLoss}\n")
+text_file.close()

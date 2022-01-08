@@ -23,8 +23,8 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 cnn = PV_Net()
 cnn.init_datasets(dataset_dir, split,array_file)
-cnn.train()
-cnn.save_net()
+# cnn.train()
+# cnn.save_net()
 cnn.load_net()
 cnn.test()
 cnn.test_whole()

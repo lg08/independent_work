@@ -1,0 +1,4 @@
+batch_size: 4
+epochs: 50
+image_size: 256 x 256running_time: 458.15673327445984
+train_loss: 0.08188052475452423, test_loss: 0.11165186762809753

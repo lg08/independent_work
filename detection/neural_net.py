@@ -144,7 +144,6 @@ class PV_Net():
         print("Testing Model...")
         dataiter = iter(self.testloader)
         images, labels = dataiter.next()
-        print(images)
         outputs = self.net(images.float())
         _, predicted = torch.max(outputs, 1)
         print('Predicted: ', ' '.join('%5s' % self.classes[predicted[j]]
@@ -163,7 +162,8 @@ class PV_Net():
             plt.imshow(img, interpolation='nearest')
             plt.axis('off')
             plt.title(f"pic {i}: {self.classes[predicted[i]]}")
-        plt.show()
+        plt.savefig(f'extras/plot.png', dpi=300)
+        # plt.show()
 
     def test_whole(self):
         correct = 0
